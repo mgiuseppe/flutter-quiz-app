@@ -6,12 +6,12 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,17 @@ class MyAppState extends State<MyApp> {
             appBar: AppBar(title: const Text('My first App')),
             body: Column(
               children: [
-                Text(questions[questionIndex]),
-                ElevatedButton(child: const Text('Answer 1'), onPressed: onPressed),
-                ElevatedButton(child: const Text('Answer 2'), onPressed: onPressed),
-                ElevatedButton(child: const Text('Answer 3'), onPressed: onPressed),
+                Text(questions[_questionIndex]),
+                ElevatedButton(child: const Text('Answer 1'), onPressed: _onPressed),
+                ElevatedButton(child: const Text('Answer 2'), onPressed: _onPressed),
+                ElevatedButton(child: const Text('Answer 3'), onPressed: _onPressed),
               ],
             )));
   }
 
-  void onPressed() {
+  void _onPressed() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
   }
 }
