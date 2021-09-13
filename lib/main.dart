@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  var questions = [
-    'What\'s your favorite color?',
-    'What\'s your favorite animal?'
-  ];
+  var questionIndex = 0;
 
   MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var questions = [
+      'What\'s your favorite color?',
+      'What\'s your favorite animal?'
+    ];
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
@@ -20,21 +21,19 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(title: const Text('My first App')),
             body: Column(
               children: [
-                const Text('The question!'),
+                Text(questions[questionIndex]),
                 ElevatedButton(
                     child: const Text('Answer 1'), onPressed: onPressed),
                 ElevatedButton(
-                    child: const Text('Answer 2'),
-                    onPressed: () {
-                      print('Answer 2 chosen!');
-                    }),
+                    child: const Text('Answer 2'), onPressed: onPressed),
                 ElevatedButton(
-                    child: const Text('Answer 3'),
-                    onPressed: () => print('Answer 3 chsoen!')),
+                    child: const Text('Answer 3'), onPressed: onPressed),
               ],
             )));
   }
 
-  onPressed() => print('Answer chosen!');
+  void onPressed() {
+    questionIndex = questionIndex + 1;
+    print(questionIndex);
+  }
 }
-
