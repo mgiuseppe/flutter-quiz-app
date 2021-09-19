@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import 'quiz.dart';
+import 'result.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,28 +14,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _questions = [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['red', 'blue', 'green', 'black']
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['dog', 'cat', 'parrot']
+    }
+  ];
   var _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal?'
-    ];
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
         // home is the widget for the default route of the app ([Navigator.defaultRouteName], which is / ).
         home: Scaffold(
             appBar: AppBar(title: const Text('My first App')),
-            body: Column(
-              children: [
-                Question(questions[_questionIndex]),
-                Answer('Answer 1', _onPressed),
-                Answer('Answer 2', _onPressed),
-                Answer('Answer 3', _onPressed),
-              ],
-            )));
+            body: _questionIndex < _questions.length
+                ? Quiz(questions: _questions, answerQuestion: _onPressed, questionIndex: _questionIndex)
+                : Result()));
   }
 
   void _onPressed() {
