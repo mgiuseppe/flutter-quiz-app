@@ -47,15 +47,22 @@ class _MyAppState extends State<MyApp> {
             body: _questionIndex < _questions.length
                 ? Quiz(
                     questions: _questions,
-                    onPressed: _onPressed,
+                    onPressed: _giveAnswer,
                     questionIndex: _questionIndex)
-                : Result(_totalScore)));
+                : Result(_totalScore, _resetQuiz)));
   }
 
-  void _onPressed(int score) {
+  void _giveAnswer(int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
       _totalScore += score;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 }
